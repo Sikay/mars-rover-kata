@@ -1,8 +1,8 @@
 <?php
 
-namespace KataTemplate\Test;
+namespace MarsRover\Test;
 
-use KataTemplate\KataTemplate;
+use MarsRover\KataTemplate;
 use PHPUnit\Framework\TestCase;
 
 class KataTemplateTest extends TestCase
