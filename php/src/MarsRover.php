@@ -17,8 +17,12 @@ class MarsRover
 
         $charCommands = str_split($command);
         foreach ($charCommands as $charCommand) {
-            if ($charCommand === 'M') {
+            if ($charCommand === 'R') {
+                $direction = 'E';
+            } else if ($charCommand === 'M' && $direction === 'N') {
                 $y++;
+            } else {
+                $x++;
             }
         }
 
