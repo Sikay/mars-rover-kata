@@ -19,10 +19,14 @@ class MarsRover
         foreach ($charCommands as $charCommand) {
             if ($charCommand === 'R') {
                 $direction = 'E';
-            } else if ($charCommand === 'L') {
+            } else if ($charCommand === 'L' && $direction === 'E') {
                 $direction = 'N';
+            } else if ($charCommand === 'L' && $direction === 'N') {
+                $direction = 'W';
             } else if ($charCommand === 'M' && $direction === 'N') {
                 $y++;
+            } else if ($charCommand === 'M' && $direction === 'W') {
+                $x--;
             } else {
                 $x++;
             }
