@@ -32,21 +32,30 @@ class MarsRover
                 $direction = Direction::turnLeft($direction);
             }
 
-            if ($charCommand === 'M' && $direction === 'N') {
-                $y++;
-            } else if ($charCommand === 'M' && $direction === 'S') {
-                $y--;
-            } else if ($charCommand === 'M' && $direction === 'W') {
-                $x--;
-            } else if ($charCommand === 'M' && $direction === 'E') {
-                $x++;
+            if ($charCommand === 'M') {
+                $this->move($direction);
             }
         }
-
-        $this->coordinate = new Coordinate($x, $y);
 
         return $this->coordinate->x() . ':' . $this->coordinate->y() . ':' . $direction;
     }
 
+    public function move(string $direction): void
+    {
+        $x = $this->coordinate->x();
+        $y = $this->coordinate->y();
+
+        if ($direction === 'N') {
+            $y++;
+        } else if ($direction === 'S') {
+            $y--;
+        } else if ($direction === 'W') {
+            $x--;
+        } else if ($direction === 'E') {
+            $x++;
+        }
+
+        $this->coordinate = new Coordinate($x, $y);
+    }
 
 }
