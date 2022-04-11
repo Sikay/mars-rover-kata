@@ -27,23 +27,22 @@ class MarsRover
 
     public function execute(String $command): string
     {
-        $direction = $this->direction->value();
         $charCommands = str_split($command);
         foreach ($charCommands as $charCommand) {
             if ($charCommand === 'R') {
-                $direction = $this->direction->turnRight($direction);
+                $this->direction = $this->direction->turnRight();
             }
 
             if ($charCommand === 'L') {
-                $direction = $this->direction->turnLeft($direction);
+                $this->direction = $this->direction->turnLeft();
             }
 
             if ($charCommand === 'M') {
-                $this->move($direction);
+                $this->move($this->direction->value());
             }
         }
 
-        return $this->coordinate->x() . ':' . $this->coordinate->y() . ':' . $direction;
+        return $this->coordinate->x() . ':' . $this->coordinate->y() . ':' . $this->direction->value();
     }
 
     public function move(string $direction): void
