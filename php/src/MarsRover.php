@@ -7,10 +7,12 @@ class MarsRover
     private $coordinate;
     private $direction;
 
+    private const NORTH = 'N';
+
     public function __construct(Grid $grid)
     {
         $this->coordinate = new Coordinate(0, 0);
-        $this->direction = new Direction('N');
+        $this->direction = new Direction(self::NORTH);
     }
 
     public function position(): Coordinate
@@ -25,10 +27,7 @@ class MarsRover
 
     public function execute(String $command): string
     {
-        $x = 0;
-        $y = 0;
-        $direction = 'N';
-
+        $direction = $this->direction->value();
         $charCommands = str_split($command);
         foreach ($charCommands as $charCommand) {
             if ($charCommand === 'R') {
@@ -52,7 +51,7 @@ class MarsRover
         $x = $this->coordinate->x();
         $y = $this->coordinate->y();
 
-        if ($direction === 'N') {
+        if ($direction === self::NORTH) {
             $y++;
         } else if ($direction === 'S') {
             $y--;
