@@ -16,7 +16,7 @@ class Direction
         return $this->direction;
     }
 
-    public static function turnRight(string $direction): string
+    public function turnRight(string $direction): string
     {
         $rightDirections = [
             'N' => 'E',
@@ -24,10 +24,10 @@ class Direction
             'S' => 'W',
             'W' => 'N',
         ];
-        return self::turnDirection($rightDirections, $direction);
+        return $this->turnDirection($rightDirections, $direction);
     }
 
-    public static function turnLeft(string $direction): string
+    public function turnLeft(string $direction): string
     {
         $leftDirections = [
             'N' => 'W',
@@ -35,10 +35,10 @@ class Direction
             'S' => 'E',
             'W' => 'S',
         ];
-        return self::turnDirection($leftDirections, $direction);
+        return $this->turnDirection($leftDirections, $direction);
     }
 
-    private static function turnDirection(array $validDirections, string $direction): string
+    private function turnDirection(array $validDirections, string $direction): string
     {
         foreach ($validDirections as $currentDirection => $validDirection) {
             if ($currentDirection === $direction) {

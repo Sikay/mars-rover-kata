@@ -31,11 +31,11 @@ class MarsRover
         $charCommands = str_split($command);
         foreach ($charCommands as $charCommand) {
             if ($charCommand === 'R') {
-                $direction = Direction::turnRight($direction);
+                $direction = $this->direction->turnRight($direction);
             }
 
             if ($charCommand === 'L') {
-                $direction = Direction::turnLeft($direction);
+                $direction = $this->direction->turnLeft($direction);
             }
 
             if ($charCommand === 'M') {
