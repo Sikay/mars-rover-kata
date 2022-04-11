@@ -43,7 +43,9 @@ class MarsRover
             }
         }
 
-        return $x . ':' . $y . ':' . $direction;
+        $this->coordinate = new Coordinate($x, $y);
+
+        return $this->coordinate->x() . ':' . $this->coordinate->y() . ':' . $direction;
     }
 
 
