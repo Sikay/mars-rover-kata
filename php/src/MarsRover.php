@@ -4,9 +4,16 @@ namespace MarsRover;
 
 class MarsRover
 {
+    private $coordinate;
+
     public function __construct(Grid $grid)
     {
+        $this->coordinate = new Coordinate(0, 0);
+    }
 
+    public function position(): Coordinate
+    {
+        return $this->coordinate;
     }
 
     public function execute(String $command): string

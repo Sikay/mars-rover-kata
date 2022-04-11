@@ -4,6 +4,7 @@ namespace MarsRover\Test;
 
 use MarsRover\MarsRover;
 use MarsRover\Grid;
+use MarsRover\Coordinate;
 use PHPUnit\Framework\TestCase;
 use Iterator;
 
@@ -31,5 +32,14 @@ class MarsRoverTest extends TestCase
         $grid = new Grid();
         $marsRover = new MarsRover($grid);
         $this->assertTrue($marsRover->execute($command) === $destination);
+    }
+
+    /** @test */
+    public function should_start_at_coodinate_zero(): void
+    {
+        $expectedCoodinate = new Coordinate(0, 0);
+        $grid = new Grid();
+        $marsRover = new MarsRover($grid);
+        $this->assertTrue($expectedCoodinate->equals($marsRover->position()));
     }
 }
