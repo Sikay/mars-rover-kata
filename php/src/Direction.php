@@ -8,7 +8,16 @@ class Direction
 
     public function __construct(string $direction)
     {
+        $this->isValidDirection($direction);
         $this->direction = $direction;
+    }
+
+    private function isValidDirection($direction): void
+    {
+        $validDirection = ['N', 'E', 'S', 'W'];
+        if (!in_array($direction, $validDirection, true)) {
+            throw new \InvalidArgumentException('Invalid direction');
+        }
     }
 
     public function value(): string
