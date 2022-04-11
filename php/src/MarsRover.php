@@ -18,11 +18,11 @@ class MarsRover
         $charCommands = str_split($command);
         foreach ($charCommands as $charCommand) {
             if ($charCommand === 'R') {
-                $direction = $this->turnRight($direction);
+                $direction = Direction::turnRight($direction);
             }
 
             if ($charCommand === 'L') {
-                $direction = $this->turnLeft($direction);
+                $direction = Direction::turnLeft($direction);
             }
 
             if ($charCommand === 'M' && $direction === 'N') {
@@ -39,35 +39,5 @@ class MarsRover
         return $x . ':' . $y . ':' . $direction;
     }
 
-    public function turnRight(string $direction): string
-    {
-        $rightDirection = '';
-        if ($direction === 'N') {
-            $rightDirection = 'E';
-        } else if ($direction === 'E') {
-            $rightDirection = 'S';
-        } else if ($direction === 'S') {
-            $rightDirection = 'W';
-        } else if ($direction === 'W') {
-            $rightDirection = 'N';
-        }
 
-        return $rightDirection;
-    }
-
-    public function turnLeft(string $direction): string
-    {
-        $leftDirection = '';
-        if ($direction === 'E') {
-            $leftDirection = 'N';
-        } else if ($direction === 'N') {
-            $leftDirection = 'W';
-        } else if ($direction === 'W') {
-            $leftDirection = 'S';
-        } else if ($direction === 'S') {
-            $leftDirection = 'E';
-        }
-
-        return $leftDirection;
-    }
 }
