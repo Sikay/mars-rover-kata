@@ -25,10 +25,14 @@ class MarsRover
                 $direction = 'N';
             } else if ($charCommand === 'L' && $direction === 'N') {
                 $direction = 'W';
+            } else if ($charCommand === 'L' && $direction === 'W') {
+                $direction = 'S';
             }
 
             if ($charCommand === 'M' && $direction === 'N') {
                 $y++;
+            } if ($charCommand === 'M' && $direction === 'S') {
+                $y--;
             } else if ($charCommand === 'M' && $direction === 'W') {
                 $x--;
             } else if ($charCommand === 'M' && $direction === 'E') {

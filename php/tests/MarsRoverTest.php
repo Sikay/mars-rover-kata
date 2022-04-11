@@ -47,4 +47,20 @@ class MarsRoverTest extends TestCase
         $marsRover = new MarsRover($grid);
         $this->assertTrue($marsRover->execute('MMRMMLMLM') === '1:3:W');
     }
+
+    /** @test */
+    public function should_move_forward_and_turn_left_to_west()
+    {
+        $grid = new Grid();
+        $marsRover = new MarsRover($grid);
+        $this->assertTrue($marsRover->execute('MMRMMLMLM') === '1:3:W');
+    }
+
+    /** @test */
+    public function should_move_forward_and_turn_left_to_south()
+    {
+        $grid = new Grid();
+        $marsRover = new MarsRover($grid);
+        $this->assertTrue($marsRover->execute('MMRMMLMLMLM') === '1:2:S');
+    }
 }
