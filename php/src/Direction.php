@@ -4,6 +4,18 @@ namespace MarsRover;
 
 class Direction
 {
+    private $direction;
+
+    public function __construct(string $direction)
+    {
+        $this->direction = $direction;
+    }
+
+    public function value(): string
+    {
+        return $this->direction;
+    }
+
     public static function turnRight(string $direction): string
     {
         $rightDirections = [

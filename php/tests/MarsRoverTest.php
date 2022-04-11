@@ -42,4 +42,12 @@ class MarsRoverTest extends TestCase
         $marsRover = new MarsRover($grid);
         $this->assertTrue($expectedCoodinate->equals($marsRover->position()));
     }
+
+    /** @test */
+    public function should_start_heading_north(): void
+    {
+        $grid = new Grid();
+        $marsRover = new MarsRover($grid);
+        $this->assertTrue($marsRover->direction()->value() === 'N');
+    }
 }

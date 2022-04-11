@@ -5,15 +5,22 @@ namespace MarsRover;
 class MarsRover
 {
     private $coordinate;
+    private $direction;
 
     public function __construct(Grid $grid)
     {
         $this->coordinate = new Coordinate(0, 0);
+        $this->direction = new Direction('N');
     }
 
     public function position(): Coordinate
     {
         return $this->coordinate;
+    }
+
+    public function direction(): Direction
+    {
+        return $this->direction;
     }
 
     public function execute(String $command): string
