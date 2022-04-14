@@ -23,7 +23,8 @@ class MarsRoverTest extends TestCase
         yield "should_move_forward_and_turn_right_to_complete_circle"   => ['MMRMMRMRMRMM', '1:3:N'];
         yield "should_wrap_if_reaches_end_from_top"                     => ['MMMMMMMMMM', '0:0:N'];
         yield "should_wrap_if_reaches_end_from_east"                    => ['RMMMMMMMMMM', '0:0:E'];
-        yield "should_wrap_if_reaches_end_from_south"                    => ['RRM', '0:9:S'];
+        yield "should_wrap_if_reaches_end_from_south"                   => ['RRM', '0:9:S'];
+        yield "should_wrap_if_reaches_end_from_west"                   => ['LM', '9:0:W'];
     }
 
     /**

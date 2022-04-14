@@ -65,7 +65,11 @@ class MarsRover
                 $y--;
             }
         } else if ($direction === 'W') {
-            $x--;
+            if ($this->grid->exceedWidthLimit($x - 1)) {
+                $x = $this->grid->maxWidth() - 1;
+            } else {
+                $x--;
+            }
         } else if ($direction === 'E') {
             if ($this->grid->exceedWidthLimit($x + 1)) {
                 $x = 0;

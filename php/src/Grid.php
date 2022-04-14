@@ -27,7 +27,7 @@ class Grid
 
     public function exceedWidthLimit(int $width): bool
     {
-        if ($width >= self::MAX_WIDTH) {
+        if ($width >= self::MAX_WIDTH || $width < 0) {
             return true;
         }
         return false;
