@@ -40,42 +40,33 @@ class MarsRover
             }
 
             if ($charCommand === 'M') {
-                $this->move($this->direction->value());
+                $this->move();
             }
         }
 
         return $this->coordinate->x() . ':' . $this->coordinate->y() . ':' . $this->direction->value();
     }
 
-    public function move(string $direction): void
+    public function move(): void
     {
         $x = $this->coordinate->x();
         $y = $this->coordinate->y();
+        $direction = $this->direction->value();
 
         if ($direction === self::NORTH) {
-            if ($this->grid->exceedHeightLimit($y + 1)) {
-                $y = 0;
-            } else {
-                $y++;
-            }
-        } else if ($direction === 'S') {
-            if ($this->grid->exceedHeightLimit($y - 1)) {
-                $y = $this->grid->maxHeight() - 1;
-            } else {
-                $y--;
-            }
-        } else if ($direction === 'W') {
-            if ($this->grid->exceedWidthLimit($x - 1)) {
-                $x = $this->grid->maxWidth() - 1;
-            } else {
-                $x--;
-            }
-        } else if ($direction === 'E') {
-            if ($this->grid->exceedWidthLimit($x + 1)) {
-                $x = 0;
-            } else {
-                $x++;
-            }
+            $y = $this->grid->exceedHeightLimit($y + 1) ? 0 : $y + 1;
+        }
+
+        if ($direction === 'S') {
+            $y = $this->grid->exceedHeightLimit($y - 1) ? $this->grid->maxHeight() - 1 : $y - 1;
+        }
+
+        if ($direction === 'W') {
+            $x = $this->grid->exceedWidthLimit($x - 1) ? $this->grid->maxWidth() - 1 : $x - 1;
+        }
+
+        if ($direction === 'E') {
+            $x = $this->grid->exceedWidthLimit($x + 1) ? 0 : $x + 1;
         }
 
         $this->coordinate = new Coordinate($x, $y);
