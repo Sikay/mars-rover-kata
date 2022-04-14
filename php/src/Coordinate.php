@@ -4,7 +4,8 @@ namespace MarsRover;
 
 class Coordinate
 {
-    private $x;
+    private int $x;
+    private int $y;
 
     public function __construct(int $x, int $y)
     {
@@ -12,12 +13,12 @@ class Coordinate
         $this->y = $y;
     }
 
-    public function x()
+    public function x(): int
     {
         return $this->x;
     }
 
-    public function y()
+    public function y(): int
     {
         return $this->y;
     }

@@ -4,8 +4,8 @@ namespace MarsRover;
 
 class MarsRover
 {
-    private $coordinate;
-    private $direction;
+    private Coordinate $coordinate;
+    private Direction $direction;
 
     private const NORTH = 'N';
 

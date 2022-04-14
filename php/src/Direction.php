@@ -4,7 +4,7 @@ namespace MarsRover;
 
 class Direction
 {
-    private $direction;
+    private string $direction;
 
     public function __construct(string $direction)
     {
