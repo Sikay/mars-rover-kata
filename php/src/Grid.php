@@ -51,4 +51,44 @@ class Grid
         }
         return false;
     }
+
+    public function nextCoordinate(Coordinate $coordinate, Direction $direction): Coordinate
+    {
+        $x = $coordinate->x();
+        $y = $coordinate->y();
+
+        if ($direction->value() === 'N') {
+            $y = $this->exceedHeightLimit($y + 1) ? 0 : $y + 1;
+        }
+
+        if ($direction->value() === 'S') {
+            $y = $this->exceedHeightLimit($y - 1) ? self::MAX_HEIGHT - 1 : $y - 1;
+        }
+
+        if ($direction->value() === 'W') {
+            $x = $this->exceedWidthLimit($x - 1) ? self::MAX_WIDTH - 1 : $x - 1;
+        }
+
+        if ($direction->value() === 'E') {
+            $x = $this->exceedWidthLimit($x + 1) ? 0 : $x + 1;
+        }
+
+        $nextCoordinate = new Coordinate($x, $y);
+
+        if ($this->isAnyObstacle($nextCoordinate)) {
+            return $coordinate;
+        }
+
+        return $nextCoordinate;
+    }
+
+    public function isAnyObstacle(Coordinate $coordinate): bool
+    {
+        foreach ($this->obstacles() as $obstacle) {
+            if ($coordinate->equals($obstacle)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
