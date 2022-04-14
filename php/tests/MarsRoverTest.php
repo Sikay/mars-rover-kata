@@ -61,8 +61,16 @@ class MarsRoverTest extends TestCase
         $obstacle = new Coordinate(0, 3);
         $grid = new Grid([$obstacle]);
         $marsRover = new MarsRover($grid);
-        var_dump($marsRover->execute('MMMM'));
         $this->assertTrue($marsRover->execute('MMMM') === '0:0:2:N');
+    }
+
+    /** @test */
+    public function should_stop_if_find_obstacle_at_1_2(): void
+    {
+        $obstacle = new Coordinate(1, 2);
+        $grid = new Grid([$obstacle]);
+        $marsRover = new MarsRover($grid);
+        $this->assertTrue($marsRover->execute('RMLMMM') === '0:1:1:N');
     }
 
 }
