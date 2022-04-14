@@ -13,7 +13,7 @@ class GridTest extends TestCase
     {
         $grid = new Grid();
         $coordinate = new Coordinate($grid->maxWidth() + 1, 0);
-        $this->assertTrue($grid->exceedLimit($coordinate), true);
+        $this->assertTrue($grid->exceedLimit($coordinate) === true);
     }
 
     /** @test */
@@ -21,6 +21,14 @@ class GridTest extends TestCase
     {
         $grid = new Grid();
         $coordinate = new Coordinate(0, $grid->maxHeight() + 1);
-        $this->assertTrue($grid->exceedLimit($coordinate), true);
+        $this->assertTrue($grid->exceedLimit($coordinate) === true);
+    }
+
+    /** @test */
+    public function should_not_exceed_the_limit()
+    {
+        $grid = new Grid();
+        $coordinate = new Coordinate($grid->maxWidth() - 1, $grid->maxHeight() - 1);
+        $this->assertTrue($grid->exceedLimit($coordinate) === false);
     }
 }

@@ -19,7 +19,23 @@ class Grid
 
     public function exceedLimit(Coordinate $coordinate): bool
     {
-        if ($coordinate->x() >= self::MAX_WIDTH || $coordinate->y() >= self::MAX_HEIGHT) {
+        if ($this->exceedWidthLimit($coordinate->x()) || $this->exceedHeightLimit($coordinate->y())) {
+            return true;
+        }
+        return false;
+    }
+
+    public function exceedWidthLimit(int $width): bool
+    {
+        if ($width >= self::MAX_WIDTH) {
+            return true;
+        }
+        return false;
+    }
+
+    public function exceedHeightLimit(int $height): bool
+    {
+        if ($height >= self::MAX_HEIGHT) {
             return true;
         }
         return false;
