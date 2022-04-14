@@ -6,6 +6,7 @@ class MarsRover
 {
     private Coordinate $coordinate;
     private Direction $direction;
+    private Grid $grid;
 
     private const NORTH = 'N';
 
@@ -13,6 +14,7 @@ class MarsRover
     {
         $this->coordinate = new Coordinate(0, 0);
         $this->direction = new Direction(self::NORTH);
+        $this->grid = $grid;
     }
 
     public function position(): Coordinate
@@ -51,7 +53,11 @@ class MarsRover
         $y = $this->coordinate->y();
 
         if ($direction === self::NORTH) {
-            $y++;
+            if ($this->grid->exceedHeightLimit($y + 1)) {
+                $y = 0;
+            } else {
+                $y++;
+            }
         } else if ($direction === 'S') {
             $y--;
         } else if ($direction === 'W') {
