@@ -63,7 +63,11 @@ class MarsRover
         } else if ($direction === 'W') {
             $x--;
         } else if ($direction === 'E') {
-            $x++;
+            if ($this->grid->exceedWidthLimit($x + 1)) {
+                $x = 0;
+            } else {
+                $x++;
+            }
         }
 
         $this->coordinate = new Coordinate($x, $y);
