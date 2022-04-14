@@ -33,7 +33,7 @@ class MarsRoverTest extends TestCase
      */
     public function should_move_to_destination(string $command, string $destination): void
     {
-        $grid = new Grid();
+        $grid = new Grid([]);
         $marsRover = new MarsRover($grid);
         $this->assertTrue($marsRover->execute($command) === $destination);
     }
@@ -42,7 +42,7 @@ class MarsRoverTest extends TestCase
     public function should_start_at_coodinate_zero(): void
     {
         $expectedCoodinate = new Coordinate(0, 0);
-        $grid = new Grid();
+        $grid = new Grid([]);
         $marsRover = new MarsRover($grid);
         $this->assertTrue($expectedCoodinate->equals($marsRover->position()));
     }
@@ -50,8 +50,19 @@ class MarsRoverTest extends TestCase
     /** @test */
     public function should_start_heading_north(): void
     {
-        $grid = new Grid();
+        $grid = new Grid([]);
         $marsRover = new MarsRover($grid);
         $this->assertTrue($marsRover->direction()->value() === 'N');
     }
+
+    /** @test */
+    public function should_stop_if_find_obstacle_at_0_3(): void
+    {
+        $obstacle = new Coordinate(0, 3);
+        $grid = new Grid([$obstacle]);
+        $marsRover = new MarsRover($grid);
+        var_dump($marsRover->execute('MMMM'));
+        $this->assertTrue($marsRover->execute('MMMM') === '0:0:2:N');
+    }
+
 }

@@ -29,6 +29,7 @@ class MarsRover
 
     public function execute(String $command): string
     {
+        $obstacle = '';
         $charCommands = str_split($command);
         foreach ($charCommands as $charCommand) {
             if ($charCommand === 'R') {
@@ -40,14 +41,14 @@ class MarsRover
             }
 
             if ($charCommand === 'M') {
-                $this->move();
+                $obstacle = $this->move();
             }
         }
 
-        return $this->coordinate->x() . ':' . $this->coordinate->y() . ':' . $this->direction->value();
+        return $obstacle . $this->coordinate->x() . ':' . $this->coordinate->y() . ':' . $this->direction->value();
     }
 
-    public function move(): void
+    public function move(): string
     {
         $x = $this->coordinate->x();
         $y = $this->coordinate->y();
@@ -69,7 +70,17 @@ class MarsRover
             $x = $this->grid->exceedWidthLimit($x + 1) ? 0 : $x + 1;
         }
 
+        $newPosition = new Coordinate($x, $y);
+
+        foreach ($this->grid->obstacles() as $obstacle) {
+            if ($newPosition->equals($obstacle)) {
+                return '0:';
+            }
+        }
+
         $this->coordinate = new Coordinate($x, $y);
+
+        return '';
     }
 
 }

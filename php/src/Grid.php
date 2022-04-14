@@ -6,6 +6,12 @@ class Grid
 {
     private const MAX_WIDTH = 10;
     private const MAX_HEIGHT = 10;
+    private array $obstacles;
+
+    public function __construct(array $obstacles)
+    {
+        $this->obstacles = $obstacles;
+    }
 
     public function maxWidth(): int
     {
@@ -15,6 +21,11 @@ class Grid
     public function maxHeight(): int
     {
         return self::MAX_HEIGHT;
+    }
+
+    public function obstacles(): array
+    {
+        return $this->obstacles;
     }
 
     public function exceedLimit(Coordinate $coordinate): bool
