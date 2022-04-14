@@ -35,7 +35,7 @@ class Grid
 
     public function exceedHeightLimit(int $height): bool
     {
-        if ($height >= self::MAX_HEIGHT) {
+        if ($height >= self::MAX_HEIGHT || $height < 0) {
             return true;
         }
         return false;
